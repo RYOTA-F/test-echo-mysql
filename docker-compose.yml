@@ -5,6 +5,8 @@ services:
     tty: true
     volumes:
       - ./back:/go/src/work
+    ports:
+      - 3000:3000
 
   db:
     image: mysql:8.0
