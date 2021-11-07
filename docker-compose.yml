@@ -5,3 +5,6 @@ services:
     tty: true
     volumes:
       - ./back:/go/src/work
+    ports:
+      - 3000:3000
+    command: go run server.go
