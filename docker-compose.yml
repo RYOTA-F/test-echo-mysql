@@ -5,21 +5,3 @@ services:
     tty: true
     volumes:
       - ./back:/go/src/work
-
-  db:
-    image: mysql:8.0
-    volumes:
-      - go-mysql-data:/var/lib/mysql
-      - ./logs:/var/log/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    environment:
-      - MYSQL_DATABASE=test_db
-      - MYSQL_USER=test_user
-      - MYSQL_PASSWORD=test_pass
-      - MYSQL_ROOT_PASSWORD=test_pass
-      - TZ=${TZ}
-    ports:
-      - 3306:3306
-
-volumes:
-  go-mysql-data:
