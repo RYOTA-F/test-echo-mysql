@@ -5,6 +5,25 @@ services:
     tty: true
     volumes:
       - ./back:/go/src/work 
-    ports:                      # 追加
-      - 3000:3000               # 追加
-    command: go run server.go   # 追加
+    ports:
+      - 3000:3000
+    command: go run server.go
+
+  db:
+    image: mysql:8.0
+    volumes:
+      - gorm-test-store:/var/lib/mysql
+      - ./logs:/var/log/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+    ports:
+      - ${DB_PORT}:3306
+
+volumes:
+  gorm-test-store:
+
